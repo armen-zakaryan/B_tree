@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="col-sm-8" >
+    <div class="tabbable" >
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-bind="click: loadMap" ><span class="glyphicon glyphicon-play"></span></a></li>   
+        <li class="active"><a href="#tab1" data-toggle="tab"> Map </a></li>
+        <li><a href="#tab2" data-toggle="tab"> Who do you want to supervise </a></li>
+      </ul>
+      <div class="tab-content" >
+        <div class="tab-pane active" id="tab1">
+          <h4><span class="glyphicon glyphicon-map-marker"></span> Our Location</h4>
+                
+              <div id="mapDefaultPlace">
+                <div id="map-canvas" data-bind="customShowMap : true" ></div>
+              </div>  
+
+        </div><!-- end tab-pane -->
+
+        <div class="tab-pane" id="tab2">      
+          <hr>        
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-lg-2 control-label"> Name </label>
+              <div class="col-lg-10">
+                <input class="form-control" id="inputName" placeholder=" Event Name " type="text" data-bind="value: eventName, valueUpdate:'afterkeydown' ">
+              </div>
+            </div>                          
+          </form>   
+        </div><!-- end tab-pane -->
+      </div><!-- end tab-content -->
+    </div><!-- end tabbable -->
+
+  </div><!-- end -->
+
+  <div id='addEvent' class="col-sm-4">
+    <div class="row ">
+      <div class="row full-screen">
+        <div class="pull-right" data-bind="click:setFullScrean">
+          <button class="btn" aria-label="Left Align">
+            <span class="glyphicon glyphicon-fullscreen full-screen-span" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Event Type option-->
+      <div class="container">
+        <div class="row">
+          <div class='col-sm-10'>
+            <div class="form-group">
+              <label class="control-label" > Choose Group </label>
+              <div class="controls">
+                <select data-bind="options:userGroups, optionsText: 'groupName', optionsValue: 'groupMembers', value:groupMembers, optionsCaption: 'Choose...' "class="form-control input-small"> 
+                </select>
+              </div>
+              <hr>
+              <!-- ko if: groupMembers -->
+              <label >  Group members are </label>
+              <div class="controls">
+                <select data-bind="options:groupMembers, optionsText: 'username', optionsValue: 'userId', value:selectedUser" class="form-control input-small"> 
+                </select>
+              </div>
+              </br>
+              <div class="allow-drow">
+                <button  class="btn btn-danger btn-small "  data-bind="click:startDrawing"> Enable Drawing </button>
+              </div>
+              <hr>
+
+<div data-bind="visible:allowSupervise()">
+  <button  class="btn btn-success " data-keyboard="false" data-bind="click:startSupervise"> Start Supervise </button>
+
+  <!--div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" data-bind="click:minimizeWindow"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+          <h4 class="modal-title" id="exampleModalLabel"> Supervising Window </h4>
+          <div id="mapModalPlace"></div>
+        </div>
+      </div>
+    </div>
+  </div-->
+
+</div>
+
+              <!-- /ko -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- End Continer -->
