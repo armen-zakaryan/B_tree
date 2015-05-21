@@ -4,8 +4,8 @@
 
 <div class="row b-tree">
 
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+    <!--div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">select degree
       <span class="caret"></span></button>
       <ul class="dropdown-menu" data-bind="foreach: degrees">
         <li>
@@ -13,13 +13,46 @@
             <input type="radio"/ name="max degree" data-bind="click: $parent.selectMaxDegree">
         </li>
       </ul>
+    </div-->
 
-    </div>
-
+    <!-- ko if: !istreeExist() -->
+        <span>degree: </span> <input data-bind="value: degree"/>
+        <button data-bind="click: makeTree"> Create B_Tree </button>
+    <!-- /ko -->
+    
+    
+    <!-- ko if: istreeExist() -->
+        <input data-bind="value: insertedValue"/>
+        <button data-bind="click: insert"> Insert </button>
+        <input data-bind="value: deletedValue"/>
+        <button data-bind="click: remove"> Remove </button>
+    <!-- /ko -->
 <div>
 
 
 <div class="b-tree-data">
-
+    <!-- ko if: istreeExist() && tree() -->
+        <!-- ko template: { name: 'b_tree_row-template', data: tree() } --><!-- /ko -->
+    <!-- /ko -->
 </div>
 
+
+
+<script type="text/html" id="b_tree_row-template">
+    <div class="tree-row">
+        <span class="row-index" data-bind="text: level"></span>
+        <span data-bind="foreach: nodes">
+            <!-- ko if: $data !== null -->
+                <span class="tree-node" data-bind="foreach: keys, style: { margin: 30*($parent.maxHeight.count - $parent.level) + 5 + 'px'}">
+                    <!-- ko if: $data -->
+                        <span data-bind="text: $data"></span>
+                    <!-- /ko -->
+                </span>
+            <!-- /ko -->
+        </span>
+    </div>
+        
+    <!-- ko if: next !== null -->
+        <!-- ko template: { name: 'b_tree_row-template', data: next } --><!-- /ko -->
+    <!-- /ko -->
+</script>

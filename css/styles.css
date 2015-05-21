@@ -152,9 +152,26 @@ footer {
 
 }
 
+.tree-row {
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+}
 
+.tree-row .tree-node {
+	border: 1px solid green;
+	padding: 5px;
+	margin: 5px;
+}
+.tree-row .tree-node span {
+	border: 1px solid #CFCFCF;
+	border-radius: 2px;
+	padding: 2px 5px;
+}
 
-
+.tree-row .row-index {
+	float: left;
+}
 
 
 
